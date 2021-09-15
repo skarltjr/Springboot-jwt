@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   postgresdb:
-    container_name: postgresql
+    container_name: postgresdb
     image: postgres:latest
     ports:
     - "5432:5432"
@@ -12,9 +12,9 @@ services:
 
   application:
     container_name: jwt_app
-    build: ../../..
+    build: .
     environment:
-      POSTGRESQL_ADDRESS: postgresdb # 위에 생성할 postgres db
+      POSTGRESQL_ADDRESS: postgresql 
       POSTGRESQL_USERNAME: root
       POSTGRESQL_PASSWORD: root
     ports:
