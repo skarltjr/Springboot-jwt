@@ -8,6 +8,7 @@ services:
     environment:
       POSTGRES_PASSWORD: root
       POSTGRES_DB: testdb
+      POSTGRES_USER: root
     restart: always
 
   application:
