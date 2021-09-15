@@ -6,19 +6,19 @@ services:
     ports:
     - "5432:5432"
     environment:
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=testdb
-      - POSTGRES_USER=root
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
     restart: always
 
   application:
     container_name: jwt_app
     build: .
     environment:
-      - POSTGRES_HOST=postgresdb
-      - POSTGRESQL_ADDRESS=PostgreSQL
-      - POSTGRESQL_USERNAME=root
-      - POSTGRESQL_PASSWORD=root
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://PostgreSQL:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     ports:
     - "8080:8080"
     restart: always
