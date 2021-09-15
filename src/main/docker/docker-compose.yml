@@ -12,7 +12,7 @@ services:
 
   application:
     container_name: jwt_app
-    build: .
+    build: ../../..
     environment:
       POSTGRESQL_ADDRESS: postgresdb # 위에 생성할 postgres db
       POSTGRESQL_USERNAME: root
