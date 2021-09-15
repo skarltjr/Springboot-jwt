@@ -6,18 +6,18 @@ services:
     ports:
     - "5432:5432"
     environment:
-      - POSTGRES_PASSWORD: root
-      - POSTGRES_DB: testdb
-      - POSTGRES_USER: root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=testdb
+      - POSTGRES_USER=root
     restart: always
 
   application:
     container_name: jwt_app
     build: .
     environment:
-      - POSTGRESQL_ADDRESS: postgresql
-      - POSTGRESQL_USERNAME: root
-      - POSTGRESQL_PASSWORD: root
+      - POSTGRESQL_ADDRESS=postgresql
+      - POSTGRESQL_USERNAME=root
+      - POSTGRESQL_PASSWORD=root
     ports:
     - "8080:8080"
     restart: always
