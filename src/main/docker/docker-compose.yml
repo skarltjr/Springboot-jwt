@@ -16,7 +16,7 @@ services:
     build: .
     environment:
       - POSTGRES_HOST=postgresdb
-      - POSTGRESQL_ADDRESS=postgresql
+      - POSTGRESQL_ADDRESS=PostgreSQL
       - POSTGRESQL_USERNAME=root
       - POSTGRESQL_PASSWORD=root
     ports:
