@@ -14,7 +14,7 @@ services:
     container_name: jwt_app
     build: .
     environment:
-      POSTGRESQL_ADDRESS: postgresql 
+      POSTGRESQL_ADDRESS: postgresql
       POSTGRESQL_USERNAME: root
       POSTGRESQL_PASSWORD: root
     ports:
