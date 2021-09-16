@@ -7,4 +7,4 @@
 
 `전체 과정` :
 
-https://github.com/skarltjr/Kubernetes-with-Docker/blob/main/7%EC%A3%BC%EC%B0%A8/dockerized%20with%20spring%20boot%20+%20postgresql.md
+https://github.com/skarltjr/Kubernetes-with-Docker/blob/main/7%EC%A3%BC%EC%B0%A8/docker-compose%20with%20spring%20boot%20%2B%20postgresql.md
