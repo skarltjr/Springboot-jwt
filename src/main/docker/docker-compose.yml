@@ -18,11 +18,10 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresdb:5432/postgres
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=password
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
       - SPRING_DATASOURCE_DRIBERCLASSNAME=org.postgresql.Driver
     ports:
-    - "9999:8080"
-# 잠깐 8080포트가 이상해서
+    - "8080:8080"
     restart: always
     depends_on:
       - postgresdb
