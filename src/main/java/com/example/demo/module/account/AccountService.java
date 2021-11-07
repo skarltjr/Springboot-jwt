@@ -1,6 +1,9 @@
 package com.example.demo.module.account;
 
 import com.example.demo.module.account.dto.SignUpForm;
+import com.example.demo.module.common.ErrorCode;
+import com.example.demo.module.common.exception.PasswordNotMatchException;
+import com.example.demo.module.common.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,9 +23,10 @@ public class AccountService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        Optional<Account> account = accountRepository.findByUsername(name);
-        account.orElseThrow(() -> new UsernameNotFoundException(name + "유저는 존재하지 않습니다."));
-        return new UserAccount(account.get());
+        Account account = accountRepository.findByUsername(name).orElseThrow(() -> new UserNotFoundException(
+                ErrorCode.USER_NOT_FOUND.getErrorMessage(), ErrorCode.USER_NOT_FOUND.getErrorCode()
+        ));
+        return new UserAccount(account);
     }
 
     public Account signUp(SignUpForm form) {
@@ -35,11 +39,12 @@ public class AccountService implements UserDetailsService {
     }
 
     public Account login(SignUpForm form) {
-        Optional<Account> byUsername = accountRepository.findByUsername(form.getUsername());
-        byUsername.orElseThrow(() -> new UsernameNotFoundException(form.getUsername() + "유저는 존재하지 않습니다."));
-        Account account = byUsername.get();
+        Account account = accountRepository.findByUsername(form.getUsername()).orElseThrow(() -> new UserNotFoundException(
+                ErrorCode.USER_NOT_FOUND.getErrorMessage(), ErrorCode.USER_NOT_FOUND.getErrorCode()
+        ));
         if (!passwordEncoder.matches(form.getPassword(), account.getPassword())) {
-            throw new IllegalArgumentException("비밀번호가 틀립니다.");
+            throw new PasswordNotMatchException(ErrorCode.PASSWORD_NOT_MATCH.getErrorMessage(),
+                    ErrorCode.PASSWORD_NOT_MATCH.getErrorCode());
         }
         return account;
     }
