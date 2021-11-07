@@ -1,6 +1,5 @@
 package com.example.demo.module.account;
 
-import com.example.demo.infra.common.PasswordError;
 import com.example.demo.module.account.dto.SignUpForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -40,7 +39,7 @@ public class AccountService implements UserDetailsService {
         byUsername.orElseThrow(() -> new UsernameNotFoundException(form.getUsername() + "유저는 존재하지 않습니다."));
         Account account = byUsername.get();
         if (!passwordEncoder.matches(form.getPassword(), account.getPassword())) {
-            throw new PasswordError("비밀번호가 틀렸습니다.");
+            throw new IllegalArgumentException("비밀번호가 틀립니다.");
         }
         return account;
     }
