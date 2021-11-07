@@ -1,9 +1,8 @@
 package com.example.demo.infra.common;
 
-import lombok.Getter;
+import lombok.Setter;
 
-
-@Getter
+@Setter
 public class PasswordError extends RuntimeException {
     private String message;
 

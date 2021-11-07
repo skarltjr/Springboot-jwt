@@ -1,7 +1,6 @@
 package com.example.demo.module.account;
 
 import com.example.demo.infra.JwtTokenProvider;
-import com.example.demo.infra.common.UserNotFound;
 import com.example.demo.module.account.dto.SignUpForm;
 import com.example.demo.module.account.dto.Token;
 import com.example.demo.module.account.vallidator.SignUpFormValidator;
@@ -10,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,18 +50,13 @@ public class AccountController {
             throw new IllegalArgumentException("유효하지 않은 토큰입니다.");
         }
         try {
-            if (provider.validateToken(token.getToken())) {
+            if(provider.validateToken(token.getToken())) {
                 provider.logoutTokens(token.getToken());
             }
             return ResponseEntity.ok().build();
-        } catch (Exception e) {
+        } catch(Exception e) {
             return ResponseEntity.notFound().build();
         }
-
-    }
-
-    @GetMapping("hello")
-    public ResponseEntity hello() {
-        throw new UserNotFound("hello");
+        
     }
 }
