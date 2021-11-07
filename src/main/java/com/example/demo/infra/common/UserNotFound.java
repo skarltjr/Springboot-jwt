@@ -1,13 +1,14 @@
 package com.example.demo.infra.common;
 
 import lombok.Getter;
-
+import lombok.Setter;
 
 @Getter
-public class PasswordError extends RuntimeException {
+@Setter
+public class UserNotFound extends RuntimeException {
     private String message;
 
-    public PasswordError(String message) {
+    public UserNotFound(String message) {
         super(message);
         this.message = message;
     }
